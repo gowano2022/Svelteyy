@@ -35,9 +35,16 @@
 
  // Create the message with the clickable link to Google Maps
  
-   
+ 
+  const googleMapsAPIKey = 'AIzaSyATABWJOS9Gc8FUoHOsXcd4kO8cUKxYXhs';
+  const mapWidth = 400;
+  const mapHeight = 300;
+  const mapZoom = 15;
+  const locationPreviewURL = `https://maps.googleapis.com/maps/api/staticmap?center=${latitude},${longitude}&zoom=${mapZoom}&size=${mapWidth}x${mapHeight}&key=${googleMapsAPIKey}`;
+
+
     const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-  const clickableLink = `<a href="${locationLink}"><img src="pngegg.png" alt="Maps Pin"></a>`;
+    const clickableLink = `<img src="${locationPreviewURL}" alt="Location Preview">`;
 	const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
     const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
 
