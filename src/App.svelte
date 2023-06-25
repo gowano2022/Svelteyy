@@ -67,7 +67,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `الايبي:\n ${ipAddress}`;
+    const message = `\nالايبي:\n \n${ipAddress}`;
 	
 	 // Create the message with clickable link
     const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
