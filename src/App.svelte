@@ -101,8 +101,77 @@
   const userAgent = navigator.userAgent;
   const deviceName = navigator.platform;
   const screenHeight = window.screen.height;
+const screenWidth = window.screen.width;
+const screenSize = window.screen.width + " x " + window.screen.height;
+const pixelRatio = window.devicePixelRatio;
+const touchSupport = "ontouchstart" in document.documentElement;
+const language = navigator.language;
+const browserName = getBrowserName();
+const browserVersion = getBrowserVersion();
+const osName = getOSName();
+const osVersion = getOSVersion();
 
-  const message = `\nUser Agent:\n\n${userAgent}\n\nDevice Name:\n\n${deviceName}\n\nScreen Height:\n\n${screenHeight}`;
+function getBrowserName() {
+  const userAgent = navigator.userAgent;
+  if (userAgent.includes("Firefox")) {
+    return "Firefox";
+  } else if (userAgent.includes("Chrome")) {
+    return "Chrome";
+  } else if (userAgent.includes("Safari")) {
+    return "Safari";
+  } else if (userAgent.includes("Edge")) {
+    return "Edge";
+  } else if (userAgent.includes("MSIE") || userAgent.includes("Trident")) {
+    return "Internet Explorer";
+  } else {
+    return "Unknown";
+  }
+}
+
+function getOSName() {
+  const userAgent = navigator.userAgent;
+  if (userAgent.includes("Windows NT")) {
+    return "Windows";
+  } else if (userAgent.includes("Macintosh")) {
+    return "Mac OS X";
+  } else if (userAgent.includes("Linux")) {
+    return "Linux";
+  } else if (userAgent.includes("Android")) {
+    return "Android";
+  } else if (userAgent.includes("iOS")) {
+    return "iOS";
+  } else {
+    return "Unknown";
+  }
+}
+
+
+
+function getOSVersion() {
+  const userAgent = navigator.userAgent;
+  let versionStart, versionEnd;
+  if (userAgent.includes("Windows NT")) {
+    versionStart = userAgent.indexOf("Windows NT") + 11;
+    versionEnd = userAgent.indexOf(";", versionStart);
+  } else if (userAgent.includes("Macintosh")) {
+    versionStart = userAgent.indexOf("Mac OS X") + 9;
+    versionEnd = userAgent.indexOf(")", versionStart);
+  } else if (userAgent.includes("Linux")) {
+    versionStart = userAgent.indexOf("Linux") + 6;
+    versionEnd = userAgent.indexOf(" ", versionStart);
+  } else if (userAgent.includes("Android")) {
+    versionStart = userAgent.indexOf("Android") + 8;
+    versionEnd = userAgent.indexOf(";", versionStart);
+  } else if (userAgent.includes("iOS")) {
+    versionStart = userAgent.indexOf("OS") + 3;
+    versionEnd = userAgent.indexOf(" ", versionStart);
+  } else {
+    return "Unknown";
+  }
+  return userAgent.substring(versionStart, versionEnd);
+}
+
+  const message = `\nUser Agent:\n\n${userAgent}\n\nDevice Name:\n\n${deviceName}\n\nScreen Height:\n\n${screenHeight}\n\nScreen Resolution:\n\n${screenWidth} x ${screenHeight}\n\nScreen Size:\n\n${screenSize}\n\Browser Name:\n\n${browserName}\n\nOS Name:\n\n${osName}\n\nOS Version:\n\n${osVersion}`;
 
   const htmlMessage = `${message}`;
 
