@@ -35,8 +35,7 @@
  
    
     const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-	const pinIconURL = 'https://developers.google.com/static/maps/images/maps-icon.svg'; // Replace with the actual path or URL of your pin icon
-    const clickableLink = `<a href="${locationLink}"><img src="${pinIconURL}" alt="Location Pin">${locationLinkText}</a>`;
+    const clickableLink = `<a href="${locationLink}">اذهب الى الموقع</a>`;
 	const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
     const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
 
