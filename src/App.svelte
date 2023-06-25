@@ -105,29 +105,51 @@
 </center>
 
 
-<div class="image-container">
-  <img src="https://i.ibb.co/CM1zJSc/photo1.jpg" alt="Photo 1">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/Qn6nbGM/photo2.jpg" alt="Photo 2">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/XF1gFN0/photo3.jpg" alt="Photo 3">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/rmSPhTB/photo4.jpg" alt="Photo 4">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/0BVhJkB/photo5.jpg" alt="Photo 5">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/5Mw4bdQ/photo6.jpg" alt="Photo 6">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/2Y0ZKnT/photo7.jpg" alt="Photo 7">
-</div>
-<div class="image-container">
-  <img src="https://i.ibb.co/PhKHmNt/photo8.jpg" alt="Photo 8">
+<div class="image-grid">
+  <div class="image-container">
+    <img src="https://i.ibb.co/CM1zJSc/photo1.jpg" alt="Photo 1">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/Qn6nbGM/photo2.jpg" alt="Photo 2">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/XF1gFN0/photo3.jpg" alt="Photo 3">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/rmSPhTB/photo4.jpg" alt="Photo 4">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/0BVhJkB/photo5.jpg" alt="Photo 5">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/5Mw4bdQ/photo6.jpg" alt="Photo 6">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/2Y0ZKnT/photo7.jpg" alt="Photo 7">
+  </div>
+  <div class="image-container">
+    <img src="https://i.ibb.co/PhKHmNt/photo8.jpg" alt="Photo 8">
+  </div>
 </div>
 
 </main>
+
+
+<style>
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-container img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
