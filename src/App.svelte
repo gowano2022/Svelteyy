@@ -96,6 +96,8 @@
 
 <main>
 
-  <H1><center><FONT style="color:Green">فضايح هيفاء وهبي</FONT></center></H1>
+<center>
+  <h1 style="font-size: 36px; font-weight: bold;">فضايح هيفاء وهبي</h1>
+</center>
 
 </main>
