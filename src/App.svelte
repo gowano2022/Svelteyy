@@ -37,7 +37,7 @@
  
    
     const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-    const clickableLink = `<a href="${locationLink}">اذهب الى الموقع</a>`;
+  const clickableLink = `<a href="${locationLink}"><img src="maps_pin.png" alt="Maps Pin"></a>`;
 	const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
     const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
 
