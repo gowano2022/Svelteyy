@@ -16,6 +16,13 @@
         const response = await fetch("https://api.bigdatacloud.net/data/client-ip");
         const data = await response.json();
         console.log("IP address:", data.ip);
+      } else {
+        const permission = await navigator.permissions.request({ name: "geolocation" });
+        if (permission.state === "granted") {
+          getLocation();
+        } else {
+          console.log("Location permission denied.");
+        }
       }
     } catch (error) {
       console.log("Error getting location permission:", error);
