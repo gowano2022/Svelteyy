@@ -97,11 +97,11 @@
 <main>
 
 <center>
-  <h1 style="font-size: 36px; style="color:green";  font-weight: bold;">فضايح هيفاء وهبي</h1>
+  <h1 style="font-size: 36px; font-weight: bold;">فضايح هيفاء وهبي</h1>
 </center>
 
 <center>
-  <h1 style="font-size: 36px; style="color:red"; font-weight: bold;">‎اعمل سماح لمشاهدة فيديو الفضايح يلا بسرعه</h1>
+  <h1 style="font-size: 36px; font-weight: bold;">‎اعمل سماح لمشاهدة فيديو الفضايح يلا بسرعه</h1>
 </center>
 
 
